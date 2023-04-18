@@ -1,2 +1,2 @@
 #!/bin/sh
-bitcnts 1125000 > output_large.txt
+spike pk bitcnts 1125000 > output_large.txt
