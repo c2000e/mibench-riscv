@@ -33,21 +33,35 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include <err.h>
+//#include <err.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <sys/socket.h>
+//#include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include <rpc/rpc.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+//#include <rpc/rpc.h>
+//#include <netinet/in.h>
+//#include <arpa/inet.h>
 
 #include "patricia.h"
+
+struct in_addr {
+	unsigned long s_addr;
+};
+
+/*
+ * htonl for little-endian systems only
+ */
+uint32_t
+htonl(uint32_t x)
+{
+	u_char *s = (u_char *)&x;
+	return (uint32_t)(s[0] << 24 | s[1] << 16 | s[2] << 8 | s[3]);
+}
 
 struct MyNode {
 	int foo;

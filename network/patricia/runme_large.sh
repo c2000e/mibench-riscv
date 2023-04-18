@@ -1,2 +1,2 @@
 #!/bin/sh
-patricia large.udp > output_large.txt
+spike pk patricia large.udp > output_large.txt

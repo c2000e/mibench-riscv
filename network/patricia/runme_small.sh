@@ -1,2 +1,2 @@
 #!/bin/sh
-patricia small.udp > output_small.txt
+spike pk patricia small.udp > output_small.txt
