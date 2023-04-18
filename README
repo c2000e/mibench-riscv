@@ -12,3 +12,5 @@ Benchmarks that currently compile and run for RV64 using spike (with the risc-v 
     - network/patricia
 
 The output of these benchmarks has not been verified against the expected results provided with the original MiBench code.
+
+To build all supported benchmarks, run './build.sh'.
