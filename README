@@ -1,0 +1,14 @@
+MiBench RISC-V
+--------------
+
+This is a modified version of MiBench 1.0 downloaded from https://vhosts.eecs.umich.edu/mibench/.
+
+Benchmarks that currently compile and run for RV64 using spike (with the risc-v pk) are:
+
+    - automotive/basicmath
+    - automotive/bitcount
+    - automotive/qsort
+    - network/dijkstra
+    - network/patricia
+
+The output of these benchmarks has not been verified against the expected results provided with the original MiBench code.
