@@ -1,2 +1,2 @@
 #!/bin/sh
-qsort_large input_large.dat > output_large.txt
+spike pk qsort_large input_large.dat > output_large.txt
