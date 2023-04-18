@@ -1,2 +1,2 @@
 #!/bin/sh
-basicmath_large > output_large.txt
+spike pk basicmath_large > output_large.txt

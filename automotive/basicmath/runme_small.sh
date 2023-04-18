@@ -1,2 +1,2 @@
 #!/bin/sh
-basicmath_small > output_small.txt
+spike pk basicmath_small > output_small.txt
