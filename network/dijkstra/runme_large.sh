@@ -1,2 +1,2 @@
 #!/bin/sh
-dijkstra_large input.dat > output_large.dat
+spike pk dijkstra_large input.dat > output_large.dat
