@@ -1,0 +1,9 @@
+Verilator Scripts Usage
+-----------------------
+
+1) Copy 'run.sh' and 'run-multi.sh' into your Verilator directory.
+
+2) Edit the 'CONFIGS' and 'BENCHMARKS' variables in 'run-multi.sh'.
+
+3) Execute 'run-multi.sh' to run all specified simulations.
+
