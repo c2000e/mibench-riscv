@@ -1,3 +1,5 @@
+#include "../../read_csr.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -164,11 +166,21 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  uint64_t csr_cycle_start = read_csr_safe(cycle);
+  uint64_t csr_instr_start = read_csr_safe(instret);
+
   /* finds 10 shortest paths between nodes */
   for (i=0,j=NUM_NODES/2;i<20;i++,j++) {
 			j=j%NUM_NODES;
       dijkstra(i,j);
   }
+
+  uint64_t csr_cycle_end = read_csr_safe(cycle);
+  uint64_t csr_instr_end = read_csr_safe(instret);
+
+  printf("cycles: %d\n", csr_cycle_end - csr_cycle_start);
+  printf("instrs: %d\n", csr_instr_end - csr_instr_start);
+
   exit(0);
   
 

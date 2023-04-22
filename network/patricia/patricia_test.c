@@ -28,6 +28,8 @@
  * $Id: patricia_test.c,v 1.1.1.1 2000/11/06 19:53:17 mguthaus Exp $
  */
 
+#include "../../read_csr.h"
+
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -133,6 +135,8 @@ main(int argc, char **argv)
 	phead->p_mlen = 1;
 	phead->p_left = phead->p_right = phead;
 
+    uint64_t csr_cycle_start = read_csr_safe(cycle);
+    uint64_t csr_instr_start = read_csr_safe(instret);
 
 	/*
 	 * The main loop to insert nodes.
@@ -208,6 +212,12 @@ main(int argc, char **argv)
 			exit(0);
 		}
 	}
+
+    uint64_t csr_cycle_end = read_csr_safe(cycle);
+    uint64_t csr_instr_end = read_csr_safe(instret);
+
+    printf("cycles: %d\n", csr_cycle_end - csr_cycle_start);
+    printf("instrs: %d\n", csr_instr_end - csr_instr_start);
 
 	exit(1);
 }

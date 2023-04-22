@@ -1,3 +1,5 @@
+#include "../../read_csr.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -47,9 +49,20 @@ main(int argc, char *argv[]) {
     }
   }
   printf("\nSorting %d vectors based on distance from the origin.\n\n",count);
+
+  uint64_t csr_cycle_start = read_csr_safe(cycle);
+  uint64_t csr_instr_start = read_csr_safe(instret);
+
   qsort(array,count,sizeof(struct my3DVertexStruct),compare);
+
+  uint64_t csr_cycle_end = read_csr_safe(cycle);
+  uint64_t csr_instr_end = read_csr_safe(instret);
   
   for(i=0;i<count;i++)
     printf("%d %d %d\n", array[i].x, array[i].y, array[i].z);
+
+  printf("cycles: %d\n", csr_cycle_end - csr_cycle_start);
+  printf("instrs: %d\n", csr_instr_end - csr_instr_start);
+
   return 0;
 }

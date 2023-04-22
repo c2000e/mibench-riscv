@@ -6,6 +6,8 @@
 **  public domain by Bob Stout & Auke Reitsma
 */
 
+#include "../../read_csr.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "conio.h"
@@ -52,6 +54,9 @@ int main(int argc, char *argv[])
   iterations=atoi(argv[1]);
   
   puts("Bit counter algorithm benchmark\n");
+
+  uint64_t csr_cycle_start = read_csr_safe(cycle);
+  uint64_t csr_instr_start = read_csr_safe(instret);
   
   for (i = 0; i < FUNCS; i++) {
     start = clock();
@@ -72,8 +77,15 @@ int main(int argc, char *argv[])
     
     printf("%-38s> Time: %7.3f sec.; Bits: %ld\n", text[i], ct, n);
   }
+
+  uint64_t csr_cycle_end = read_csr_safe(cycle);
+  uint64_t csr_instr_end = read_csr_safe(instret);
+    
   printf("\nBest  > %s\n", text[cminix]);
   printf("Worst > %s\n", text[cmaxix]);
+
+  printf("cycles: %d\n", csr_cycle_end - csr_cycle_start);
+  printf("instrs: %d\n", csr_instr_end - csr_instr_start);
   return 0;
 }
 

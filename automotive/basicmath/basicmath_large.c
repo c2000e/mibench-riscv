@@ -1,3 +1,4 @@
+#include "../../read_csr.h"
 #include "snipmath.h"
 #include <math.h>
 #include <stdio.h>
@@ -6,6 +7,9 @@
 
 int main(void)
 {
+  uint64_t csr_cycle_start = read_csr_safe(cycle);
+  uint64_t csr_instr_start = read_csr_safe(instret);
+
   double  a1 = 1.0, b1 = -10.5, c1 = 32.0, d1 = -30.0;
   double  x[3];
   double X;
@@ -118,7 +122,12 @@ int main(void)
 /*   for (X = 0.0; X <= (2 * PI + 1e-6); X += (PI / 180)) */
   for (X = 0.0; X <= (2 * PI + 1e-6); X += (PI / 5760))
     printf("%.12f radians = %3.0f degrees\n", X, rad2deg(X));
+
+  uint64_t csr_cycle_end = read_csr_safe(cycle);
+  uint64_t csr_instr_end = read_csr_safe(instret);
   
-  
+  printf("cycles: %d\n", csr_cycle_end - csr_cycle_start);
+  printf("instrs: %d\n", csr_instr_end - csr_instr_start);
+
   return 0;
 }

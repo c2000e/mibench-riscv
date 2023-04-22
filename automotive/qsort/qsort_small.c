@@ -1,3 +1,5 @@
+#include "../../read_csr.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -37,9 +39,20 @@ main(int argc, char *argv[]) {
     }
   }
   printf("\nSorting %d elements.\n\n",count);
+
+  uint64_t csr_cycle_start = read_csr_safe(cycle);
+  uint64_t csr_instr_start = read_csr_safe(instret);
+
   qsort(array,count,sizeof(struct myStringStruct),compare);
+
+  uint64_t csr_cycle_end = read_csr_safe(cycle);
+  uint64_t csr_instr_end = read_csr_safe(instret);
   
   for(i=0;i<count;i++)
     printf("%s\n", array[i].qstring);
+
+  printf("cycles: %d\n", csr_cycle_end - csr_cycle_start);
+  printf("instrs: %d\n", csr_instr_end - csr_instr_start);
+
   return 0;
 }
